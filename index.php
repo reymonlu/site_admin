@@ -1,4 +1,5 @@
 <?php
+require_once("./modele/Vue.php");
 /**
  * User: reymonlu
  * Date: 23/11/18
@@ -19,15 +20,18 @@
           $controller->$action();
       }
       else{
-        die("Le Controleur existe mais pas la méthode.");
+        $view = new Vue();
+        $view->show("vue/Erreur.vue.html");
       }
     }
     else{
-      die("Pas de controller avec ce nom");
+        $view = new Vue();
+        $view->show("vue/Erreur.vue.html");
     }
   }
   else{
-    print('pas de variable');
+      $view = new Vue();
+      $view->show("vue/Erreur.vue.html");
   }
 
 ?>
