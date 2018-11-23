@@ -8,5 +8,5 @@
 
 class Commande
 {
-
+    private $cde;
 }
