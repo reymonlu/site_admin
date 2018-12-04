@@ -14,12 +14,11 @@ class CommandeDAO
 
     function __construct()
     {
-        $db = new DatabaseDAO();
+        $this->db = new DatabaseDAO();
     }
 
     function get_liste_commandes_possibles()
     {
-        global $db;
         $req = array();
         if ($fh = fopen('data/commandes.txt', 'r')) {
             $line = fgets($fh);
