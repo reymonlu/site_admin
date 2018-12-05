@@ -1,1 +1,2 @@
-.idea
+# On retire le fichier répertoire de phpstorm
+.idea/*
