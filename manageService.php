@@ -8,12 +8,15 @@
 
 # du coup on va tenter de lister les services:
 
+fann_cascadetrain_on_data()
 $command = '/usr/sbin/service --status-all';
 
 $output = shell_exec($command);
 
 
 $tab = explode ('[', $output);
+
+$services = array();
 
 foreach ($tab as $service) {
     #echo $service;
@@ -25,15 +28,20 @@ foreach ($tab as $service) {
         $state = FALSE;
     }
 
-    echo $state;
-
-    echo "<br/>";
     $name = substr($service, 5);
-    echo $name;
-    echo "<br/>";
+
+    $services[] = array($name, $state);
 
 
 }
+
+foreach ($services as $srv){
+    echo $srv[0];
+    echo $srv[1];
+    echo '<br/>';
+}
+
+
 
 
 
