@@ -4,18 +4,22 @@
  * Date: 23/11/18
  * Time: 15:35
  */
+session_start();
 require_once("./modele/Vue.php");
 require_once ("./controller/Identification.php");
   # Controleur frontal
   if(!isset($_GET['controleur']) || !isset($_GET['action'])){
     # Page par défaut s'il manque des parametres à l'URL
-    $action = "afficheForm";
-    $controller_name = "Identification";
-    $controller_file_name = "./controller/".$controller_name.".php";
+      echo("Problème de paramètres"); # TODO : Décommentez les lignes pour prods
+      die();
+    #$action = "afficheForm";
+    #$controller_name = "Identification";
+    #$controller_file_name = "./controller/".$controller_name.".php";
   }
   else{
     $action = $_GET['action'];
     # contruction du chemin
+    $controller_name = $_GET['controleur'];
     $controller_file_name = "./controller/".$_GET['controleur'].".php";
   }
   # vérification de l'existence du fichier

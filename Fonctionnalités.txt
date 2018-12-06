@@ -1,0 +1,4 @@
+## Fichier contenant les fonctionnalités visées ##
+
+- Autoriser la connexion à l'administrateur :
+    # Difficulté : Éviter l'injection SQL et le vol d'identité.
