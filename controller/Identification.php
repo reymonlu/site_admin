@@ -45,8 +45,15 @@ class Identification
 
             # Si nous avons un résultat qui correspond
             if($utilisateur != false){
-
-                header("location: site_administration/index.php");
+                # Création du token de connexion
+                $cookie_name = "ticket";
+                $ticket = session_id().microtime().rand(0,9999999999);
+                $ticket = hash('sha512', $ticket);
+                setcookie($cookie_name, $ticket, time() + (60)); // Expire au bout de 10 min
+                # Sauvegarde du token dans la variable de session
+                $_SESSION['ticket'] = $ticket;
+                $_SESSION['identifiant'] = $identifiant;
+                header("location:index.php");
             }
             # Si l'utilisateur n'est pas dans la base
             else{
