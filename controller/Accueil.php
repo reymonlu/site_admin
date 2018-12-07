@@ -11,8 +11,6 @@ require_once("modele/Vue.php");
 require_once("modele/Tool.php");
 class Accueil
 {
-
-
     public function accueilPage(){
         $vue = new Vue();
         # test de la variable de session avec le cookie

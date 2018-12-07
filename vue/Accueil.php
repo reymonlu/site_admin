@@ -16,7 +16,7 @@
       <td><?=$key ?></td>
       <td><?= $server ?>"index.php?controleur=fonctionnalites&action="<?= $value ?></td>
     </tr>
-  <php? } ?>
+  <?php } ?>
 </table>
 </body>
 </html>

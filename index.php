@@ -5,6 +5,7 @@
  * Time: 15:35
  */
 
+session_start();
 require_once("./modele/Vue.php");
 require_once ("./controller/Identification.php");
 require_once ("./controller/Accueil.php");
