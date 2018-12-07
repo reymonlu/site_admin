@@ -8,7 +8,8 @@ require_once('modele/data/config.php');
 # Return KO : String d'erreur
 #######
 function launchCommandLscpuReturnKeyValueArray() {
-  $a = shell_exec('lscpu -J', $retval);
+  $a = shell_exec('lscpu -J');
+  $retval = exec('echo $?'); 
   if($retval == 0){
     $a = json_decode($a, $asso=TRUE);
     $val_cpu = [];
@@ -31,7 +32,8 @@ function launchCommandLscpuReturnKeyValueArray() {
 # Return KO : String d'erreur
 #######
 function launchCommandFreeMemoryReturnKeyValueArray(){
-  $a = exec('free -mht', $retval);
+  $a = exec('free -mht');
+  $retval = exec('echo $?');
   if($retval == 0){
     $a = preg_replace('!\s+!', ' ', $a);
     $a = explode(" ",$a);
@@ -101,9 +103,8 @@ function commandService($service, $command){
   }
 }
 
-$a = commandService("ssh", "status");
-echo $a;
-
+#$a = launchCommandLscpuReturnKeyValueArray();
+#var_dump($a);
 
 
 ?>
