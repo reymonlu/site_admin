@@ -5,7 +5,7 @@
     <title>Site d'administration</title>
 </head>
 <body>
-<h1>Liste des services</h1>
+<h1>Liste des services</h1> <a href="index.php?controleur=Deconnexion&action=disconnect">Déconnexion</a>
 <table>
   <tr>
     <th>Service</th>
