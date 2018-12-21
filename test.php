@@ -115,6 +115,12 @@ function readFileFTPConfigReturnArrayKeyValue(){
 }
 
 function saveModifiedFTPConfFile($conf_file){
+  $monfichier = fopen('../write/config.conf','w');
+  foreach ($conf_file as $key => $value) {
+    fputs($monfichier, $key.'='.$value."\n");
+  }
+  exec("sudo mv ../write/config.conf /etc/vsftpd.conf");
+  fclose($monfichier);
 
 }
 
