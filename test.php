@@ -9,7 +9,7 @@ require_once('modele/data/config.php');
 #######
 function launchCommandLscpuReturnKeyValueArray() {
   $a = shell_exec('lscpu -J');
-  $retval = exec('echo $?'); 
+  $retval = exec('echo $?');
   if($retval == 0){
     $a = json_decode($a, $asso=TRUE);
     $val_cpu = [];
@@ -103,8 +103,20 @@ function commandService($service, $command){
   }
 }
 
-#$a = launchCommandLscpuReturnKeyValueArray();
-#var_dump($a);
+function readFileFTPConfigReturnArrayKeyValue(){
+    $tmp = file("/etc/vsftpd2.conf");
+    $conf_file = array();
+    foreach ($tmp as $value) {
+      $i = 0;
+      $cache = explode("=",$value);
+      $conf_file[$cache[0]] = $cache[1];
+    }
+    return $conf_file;
+}
+
+function saveModifiedFTPConfFile($conf_file){
+
+}
 
 
 ?>
