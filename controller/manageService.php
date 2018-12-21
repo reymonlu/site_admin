@@ -17,11 +17,7 @@ class manageService
         foreach ($tab as $service) {
 
             $state = substr($service, 1, 1);
-            if ($state == '+') {
-                $state = TRUE;
-            } else {
-                $state = FALSE;
-            }
+            $state = ($state == "+") ? "+" : "-";
             # récupération du nom du service
             $name = substr($service, 5);
             $services[$name] = $state;

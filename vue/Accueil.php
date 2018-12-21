@@ -8,13 +8,11 @@
 <h1>Liste des services</h1> <a href="index.php?controleur=Deconnexion&action=disconnect">Déconnexion</a>
 <table>
   <tr>
-    <th>Service</th>
-    <th>Adresse</th>
+    <th>Service</th> <th>Etat</th>
   </tr>
   <?php foreach ($this->list_service as $key => $value) { ?>
     <tr>
-      <td><?=$key ?></td>
-      <td><?= $server ?>"index.php?controleur=fonctionnalites&action="<?= $value ?></td>
+      <td><?=$key ?></td> <td><?= $value ?></td>
     </tr>
   <?php } ?>
 </table>

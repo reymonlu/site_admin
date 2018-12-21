@@ -31,7 +31,7 @@ if(isset($_POST['listen'])
     $config_ftp['rsa_private_key_file'] = htmlentities($_POST['rsa_private_key_file']);
     $config_ftp['ssl_enable'] = htmlentities($_POST['ssl_enable']);
 }
-if
+
 echo(count($config_ftp));
 echo('<br>');
 

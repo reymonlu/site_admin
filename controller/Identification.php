@@ -57,7 +57,7 @@ class Identification
                 $ticket = hash($HASH, $ticket);
                 $expiry = time() + $LIFETIME_COOKIE;
                 $cookieData = (object) array( "ticket" => $ticket, "expiry" => $expiry, "random_datas" => hash($HASH, $expiry));
-                setcookie( "ticket", json_encode($cookieData), $expiry, "/site_administration/", "localhost", false, true);
+                setcookie( "ticket", json_encode($cookieData), $expiry);
                 # Sauvegarde du token dans la variable de session
                 $_SESSION['ticket'] = $ticket;
                 $_SESSION['identifiant'] = $identifiant;
