@@ -14,4 +14,6 @@ $CONFFTP = array('listen',
   'rsa_cert_file',
   'rsa_private_key_file',
   'ssl_enable');
+  $HASH = 'sha512';
+  $LIFETIME_COOKIE = 12000;
  ?>

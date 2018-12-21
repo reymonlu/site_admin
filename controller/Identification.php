@@ -9,9 +9,11 @@
 
 require_once("modele/Vue.php");
 require_once("modele/DatabaseDAO.php");
+require_once ("modele/data/config.php");
 
 class Identification
 {
+
     public $HASH = 'sha512';
     public function afficheForm(){
         # Création de la vue
@@ -24,6 +26,8 @@ class Identification
      */
 
     public function controleForm(){
+        global $HASH;
+        global $LIFETIME_COOKIE;
         # Création de la vue
         $vue = new Vue();
         # Vérification des données passées dans le formulaire
@@ -45,11 +49,15 @@ class Identification
 
             # Si nous avons un résultat qui correspond
             if($utilisateur != false){
+
                 # Création du token de connexion
                 $cookie_name = "ticket";
+                # Hashage du ticket
                 $ticket = session_id().microtime().rand(0,9999999999);
-                $ticket = hash('sha512', $ticket);
-                setcookie($cookie_name, $ticket, time() + (60)); // Expire au bout de 10 min
+                $ticket = hash($HASH, $ticket);
+                $expiry = time() + $LIFETIME_COOKIE;
+                $cookieData = (object) array( "ticket" => $ticket, "expiry" => $expiry, "random_datas" => hash($HASH, $expiry));
+                setcookie( "ticket", json_encode($cookieData), $expiry, "/site_administration/", "localhost", false, true);
                 # Sauvegarde du token dans la variable de session
                 $_SESSION['ticket'] = $ticket;
                 $_SESSION['identifiant'] = $identifiant;

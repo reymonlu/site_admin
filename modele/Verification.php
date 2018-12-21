@@ -10,6 +10,7 @@
 /**
  * Class Verification qui s'occupe de vérifier les variables liés à une connexion.
  */
+require_once ("modele/data/config.php");
 
 class Verification
 {
@@ -19,6 +20,17 @@ class Verification
      * @return Vrai si le token dans le cookie et dans la variable de session son égaux
      */
     public static function verifCookieSession(){
-        return isset($_SESSION["ticket"]) && isset($_COOKIE["ticket"]) && isset($_COOKIE["ticket"]) == $_SESSION["ticket"] ;
+        global $HASH;
+
+        if (isset($_SESSION["ticket"]) && isset($_COOKIE["ticket"])){
+            $json = json_decode($_COOKIE["ticket"]);
+            return isset($_COOKIE["ticket"]) == $_SESSION["ticket"] &&
+                     $json->{"expiry"} >= time() &&
+                    hash($HASH,$json->{"expiry"}) == $json->{"random_datas"};
+
+        }
+        else return false;
+
+
     }
 }
