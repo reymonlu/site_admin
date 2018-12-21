@@ -11,11 +11,33 @@ require_once("modele/Vue.php");
 require_once("modele/Tool.php");
 class Accueil
 {
+
+
+    private function listService() {
+        $command = '/usr/sbin/service --status-all';
+        $output = shell_exec($command);
+
+        $tab = explode('[', $output);
+
+        foreach ($tab as $service) {
+
+            $state = substr($service, 1, 1);
+            $state = ($state == "+") ? "+" : "-";   
+            # récupération du nom du service
+            $name = substr($service, 5);
+            $services[$name] = $state;
+
+        }
+        return $services;
+    }
+
     public function accueilPage(){
         $vue = new Vue();
         # test de la variable de session avec le cookie
         if(Verification::verifCookieSession()){
-
+            # Récupération du tableau des services
+            $service = $this->listService();
+            $vue->list_service = $service;
             $vue->show("vue/Accueil.php");
         }
         # Si l'identification n'est pas bonne
@@ -23,4 +45,5 @@ class Accueil
             Tool::redirectAuth();
         }
     }
+
 }
