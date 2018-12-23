@@ -119,9 +119,37 @@ function saveModifiedFTPConfFile($conf_file){
   foreach ($conf_file as $key => $value) {
     fputs($monfichier, $key.'='.$value."\n");
   }
-  exec("sudo mv ../write/config.conf /etc/vsftpd.conf");
+  $fichier_bak = savefile($monfichier);
+  exec("sudo cp ../write/config.conf /etc/vsftpd.conf");
+  exec("sudo chown root:root /etc/vsftpd.conf");
+  commandService("vsftpd","start");
+  #commandService("vsftpd","stop");
+  if(checkIfVsftpdLaunchedOrNot() == True) {
+    echo("Service VSFTPD modifié et lancé");
+  }
+  else {
+    echo("Erreur, récupération de l'ancienne configuration");
+    exec("sudo cp ../write/config.conf.bak ../write/config.conf");
+    exec("sudo cp ../write/config.conf /etc/vsftpd.conf");
+    exec("sudo chown root:root /etc/vsftpd.conf");
+    commandService("vsftpd","start");
+  }
   fclose($monfichier);
+}
 
+function checkIfVsftpdLaunchedOrNot() {
+  $retour = exec("sudo systemctl is-active vsftpd");
+  if($retour == "active") {
+    return True;
+  }
+  else {
+    return False;
+  }
+}
+
+function saveFile($file) {
+  exec("cp ".$file." ".$file.".bak");
+  return $file.".bak";
 }
 
 
