@@ -104,7 +104,7 @@ function commandService($service, $command){
 }
 
 function readFileFTPConfigReturnArrayKeyValue(){
-    $tmp = file("/etc/vsftpd2.conf");
+    $tmp = file("/etc/vsftpd.conf");
     $conf_file = array();
     foreach ($tmp as $value) {
       $i = 0;
@@ -115,12 +115,12 @@ function readFileFTPConfigReturnArrayKeyValue(){
 }
 
 function saveModifiedFTPConfFile($conf_file){
-  $monfichier = fopen('../write/config.conf','w');
+  $monfichier = fopen('../write/vsftpd.conf','w');
   foreach ($conf_file as $key => $value) {
     fputs($monfichier, $key.'='.$value."\n");
   }
-  $fichier_bak = savefile($monfichier);
-  exec("sudo cp ../write/config.conf /etc/vsftpd.conf");
+  $fichier_bak = savefile('/etc/vsftpd.conf');
+  exec("sudo cp ../write/vsftpd.conf /etc/vsftpd.conf");
   exec("sudo chown root:root /etc/vsftpd.conf");
   commandService("vsftpd","start");
   #commandService("vsftpd","stop");
@@ -129,8 +129,7 @@ function saveModifiedFTPConfFile($conf_file){
   }
   else {
     echo("Erreur, récupération de l'ancienne configuration");
-    exec("sudo cp ../write/config.conf.bak ../write/config.conf");
-    exec("sudo cp ../write/config.conf /etc/vsftpd.conf");
+    exec("sudo cp ../write/vsftpd.conf.bak /etc/vsftpd.conf");
     exec("sudo chown root:root /etc/vsftpd.conf");
     commandService("vsftpd","start");
   }
@@ -148,7 +147,7 @@ function checkIfVsftpdLaunchedOrNot() {
 }
 
 function saveFile($file) {
-  exec("cp ".$file." ".$file.".bak");
+  exec("cp ".$file." ../write/vsftpd.conf.bak");
   return $file.".bak";
 }
 
