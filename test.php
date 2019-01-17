@@ -115,12 +115,13 @@ function readFileFTPConfigReturnArrayKeyValue(){
 }
 
 function saveModifiedFTPConfFile($conf_file){
-  $monfichier = fopen('../write/vsftpd.conf','w');
+  global $HOME;
+  $monfichier = fopen($HOME.'write/vsftpd.conf','w');
   foreach ($conf_file as $key => $value) {
     fputs($monfichier, $key.'='.$value."\n");
   }
   $fichier_bak = savefile('/etc/vsftpd.conf');
-  exec("sudo cp ../write/vsftpd.conf /etc/vsftpd.conf");
+  exec("sudo cp write/vsftpd.conf /etc/vsftpd.conf");
   exec("sudo chown root:root /etc/vsftpd.conf");
   commandService("vsftpd","start");
   #commandService("vsftpd","stop");
@@ -129,7 +130,7 @@ function saveModifiedFTPConfFile($conf_file){
   }
   else {
     echo("Erreur, récupération de l'ancienne configuration");
-    exec("sudo cp ../write/vsftpd.conf.bak /etc/vsftpd.conf");
+    exec("sudo cp write/vsftpd.conf.bak /etc/vsftpd.conf");
     exec("sudo chown root:root /etc/vsftpd.conf");
     commandService("vsftpd","start");
   }
@@ -147,7 +148,7 @@ function checkIfVsftpdLaunchedOrNot() {
 }
 
 function saveFile($file) {
-  exec("cp ".$file." ../write/vsftpd.conf.bak");
+  exec("cp ".$file." write/vsftpd.conf.bak");
   return $file.".bak";
 }
 

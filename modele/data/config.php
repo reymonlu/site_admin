@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 $HOME_SITE = '/var/www/html/php/php_projet/site_admin/';
+=======
+$HOME = "/var/www/html/site_administration/site_admin/";
+>>>>>>> f8e43aa6a346be8bf8511eb8f8070e4dc3da7580
 $COMMANDES_SERVICES = array("start","stop");
 $SERVER = "localhost:8081/";
 $CONFFTP = array('listen',

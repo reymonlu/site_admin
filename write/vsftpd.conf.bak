@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 listen=YES
 listen_ipv6=NO
 anonymous_enable=NO
@@ -6,6 +7,16 @@ dirmessage_enable=NO
 use_localtime=NO
 xferlog_enable=NO
 connect_from_port_20=NO
+=======
+listen=NO
+listen_ipv6=NO
+anonymous_enable=YES
+local_enable=YES
+dirmessage_enable=YES
+use_localtime=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+>>>>>>> f8e43aa6a346be8bf8511eb8f8070e4dc3da7580
 secure_chroot_dir=/var/run/vsftpd/empty
 pam_service_name=VSFTPD
 rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem

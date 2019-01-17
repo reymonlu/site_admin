@@ -6,19 +6,17 @@
     <title>Configuration du serveur FTP</title>
   </head>
   <body>
-    <h1>Configuration du serveur FTP</h1>
+  <a href="index.php?controleur=Deconnexion&action=disconnect">Déconnexion</a>
+
+  <h1>Configuration du serveur FTP</h1>
     <h2>Configuration</h2>
     <table>
       <tr>
         <th>Clé</th><th>Valeur</th>
       </tr>
-      <?php
-        require_once("../test.php");
-        $conf_ftp = readFileFTPConfigReturnArrayKeyValue();
-       ?>
-      <form class="" action="../controller/validation_ftp.php" method="post">
+      <form action="index.php?controleur=FTP&action=validation" method="post">
         <table>
-      <?php foreach ($conf_ftp as $key => $value) { ?>
+      <?php foreach ($this->conf_ftp as $key => $value) { ?>
           <tr>
           <td><?=$key?> :</td>
           <td><input type="text" name=<?=$key?> value=<?=$value?>></td>
