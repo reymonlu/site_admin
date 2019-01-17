@@ -28,7 +28,7 @@ class Accueil
             $services[$name] = $state;
 
         }
-        return $services;
+        return array_slice($services,1);
     }
 
     public function accueilPage(){
