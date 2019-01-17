@@ -47,20 +47,19 @@ require_once ("./modele/Verification.php");
       $view->show("vue/Erreur.vue.html");
     }
   }
-  # Si on est pas connecté, redirection vers la page de connexion
+  # Si on est pas connecté, red irection vers la page de connexion
   else{
     # Vérification des paramètres GET
-    if(!isset($_GET['controleur']) || !isset($_GET['action'])){
-      $action = "afficheForm";
+      $action = "controleForm";
       $controller_name = "Identification";
       $controller_file_name = "./controller/".$controller_name.".php";
-    }
-    else{
-      $action = $_GET['action'];
-      # contruction du chemin
-      $controller_name = $_GET['controleur'];
-      $controller_file_name = "./controller/".$_GET['controleur'].".php";
-    }
+
+//    else{
+//      $action = $_GET['action'];
+//      # contruction du chemin
+//      $controller_name = $_GET['controleur'];
+//      $controller_file_name = "./controller/".$_GET['controleur'].".php";
+//    }
 
     # vérification de l'existence du fichier
     if((file_exists($controller_file_name))){
