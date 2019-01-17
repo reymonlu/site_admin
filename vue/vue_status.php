@@ -11,7 +11,11 @@
       <tr>
         <th>Libellé</th><th>Valeur</th>
       </tr>
-      <?php foreach ($this->tab_cpu as $key => $value) { ?>
+      <?php
+      require_once('../test.php');
+      $tab_cpu = launchCommandLscpuReturnKeyValueArray();
+      ?>
+      <?php foreach ($tab_cpu as $key => $value) { ?>
           <tr>
           <td><?=$key?></td>
           <td><?=$value?></td>
@@ -23,8 +27,12 @@
       <tr>
         <th>Total</th><th>Utilisé</th><th>Libre</th>
       </tr>
+      <?php
+        require_once('../test.php');
+        $tab_memoire = launchCommandFreeMemoryReturnKeyValueArray();
+        ?>
         <tr>
-        <?php foreach ($this->tab_memoire as $key => $value) { ?>
+        <?php foreach ($tab_memoire as $key => $value) { ?>
           <td><?=$value ?></td>
         <?php } ?>
         </tr>
