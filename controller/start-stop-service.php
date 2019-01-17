@@ -6,7 +6,6 @@
  * Time: 11:31
  */
 require_once("../test.php");
-echo "fezfzesfezs";
 
 
 if (isset($_POST['state'])) {
@@ -21,12 +20,20 @@ if (isset($_POST['state'])) {
 if (isset($_POST['servicename'])) {
     # la il faut vérifier que le service existe
     $name = $_POST['servicename'];
+    if ($name == "cron"){
+        echo "fzefnrezjofhbzeriouhfuiozehfouziebhfjezbhfjksezbjksbfjsk <br/>";
+        echo $name;
+    }
+    echo $name;
 }
 
+echo $status;
+echo "<br/>";
 # modification du service
 $rep = commandService($name, $status);
+echo "<br/>";
 echo $rep;
-#echo "fezfzesfezs";
+
 
 
     ?>

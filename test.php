@@ -1,6 +1,6 @@
 <?php
 require_once('modele/data/config.php');
-
+error_reporting(E_ALL);
 #######
 # Fonction qui lance la commande 'lscpu' : Informations du système
 # Le résultat est habilement retraité pour le rendre lisible facilement
@@ -81,8 +81,17 @@ function commandService($service, $command){
     }
   }
   if($command_ok == TRUE) {
-    $val = shell_exec("sudo service ".$service." ".$command." 2>&1");
+    $shell = "sudo service ".$service." ".$command." 2>&1";
+    $val = `sudo service $service stop`;
+    echo $val;
+    echo "<br/>";
+    echo $shell;
+    echo "<br/>";
     $retval = shell_exec('$echo $?');
+
+
+    echo $retval;
+
     if($retval == 0){
       switch ($command) {
         case 'start':
