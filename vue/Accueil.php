@@ -10,9 +10,11 @@
 </head>
 <body>
 <div class="container">
-<a href="index.php?controleur=Deconnexion&action=disconnect">Déconnexion</a>
+    <a href="index.php?controleur=Deconnexion&action=disconnect">Déconnexion | </a>
+    <a href="index.php?controleur=FTP&action=validation">Configuration Serveur FTP | </a>
+    <a href="index.php?controleur=CPU&action=show">Processeur</a>
 <h1>Liste des services</h1>
-<a href="index.php?controleur=FTP&action=validation">Configuration Serveur FTP</a>
+
 <table class="table table-striped">
     <thead>
   <tr>
