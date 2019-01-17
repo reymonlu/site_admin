@@ -2,6 +2,7 @@
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8">
+  <link rel="stylesheet" href="..style.css">
     <title>Configuration du serveur FTP</title>
   </head>
   <body>
