@@ -70,6 +70,8 @@ function launchCommandFreeMemoryReturnKeyValueArray(){
 # Return KO : String d'erreur
 #######
 function commandService($service, $command){
+  $service = trim($service);
+  $command = trim($command);
   global $COMMANDES_SERVICES;
   foreach ($COMMANDES_SERVICES as $controle) {
     if($controle == $command){
@@ -81,16 +83,13 @@ function commandService($service, $command){
     }
   }
   if($command_ok == TRUE) {
-    $shell = "sudo service ".$service." ".$command." 2>&1";
-    $val = `sudo service $service stop`;
-    echo $val;
-    echo "<br/>";
+    $shell = 'sudo service '.$service.' '.$command;
     echo $shell;
-    echo "<br/>";
-    $retval = shell_exec('$echo $?');
+    system($shell);
+    $retval = shell_exec("echo $?");
 
 
-    echo $retval;
+    echo "Valeur de retour : ".$retval;
 
     if($retval == 0){
       switch ($command) {

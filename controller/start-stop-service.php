@@ -32,7 +32,7 @@ echo "<br/>";
 # modification du service
 $rep = commandService($name, $status);
 echo "<br/>";
-echo $rep;
+#echo $rep;
 
 
 
