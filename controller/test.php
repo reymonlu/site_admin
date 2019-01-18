@@ -1,5 +1,6 @@
 <?php
-require_once('../modele/data/config.php');
+require_once('/var/www/html/php/php_projet/site_admin/modele/data/config.php');
+require_once($HOME.'/modele/data/config.php');
 error_reporting(E_ALL);
 #######
 # Fonction qui lance la commande 'lscpu' : Informations du système
@@ -146,7 +147,7 @@ function saveModifiedFTPConfFile($conf_file){
 }
 
 function checkIfVsftpdLaunchedOrNot() {
-  $retour = exec("sudo systemctl is-active vsftpd");
+  $retour = exec("systemctl is-active vsftpd");
   if($retour == "active") {
     return True;
   }
