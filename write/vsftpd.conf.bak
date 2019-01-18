@@ -1,7 +1,7 @@
-listen=YES
-listen_ipv6=NO
-anonymous_enable=NO
-local_enable=NO
+listen=NO
+listen_ipv6=YES
+anonymous_enable=YES
+local_enable=YES
 dirmessage_enable=NO
 use_localtime=NO
 xferlog_enable=NO
