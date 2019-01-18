@@ -1,6 +1,6 @@
 <?php
 require_once('modele/data/config.php');
-
+error_reporting(E_ALL);
 #######
 # Fonction qui lance la commande 'lscpu' : Informations du système
 # Le résultat est habilement retraité pour le rendre lisible facilement
@@ -70,6 +70,8 @@ function launchCommandFreeMemoryReturnKeyValueArray(){
 # Return KO : String d'erreur
 #######
 function commandService($service, $command){
+  $service = trim($service);
+  $command = trim($command);
   global $COMMANDES_SERVICES;
   foreach ($COMMANDES_SERVICES as $controle) {
     if($controle == $command){
@@ -81,8 +83,14 @@ function commandService($service, $command){
     }
   }
   if($command_ok == TRUE) {
-    $val = shell_exec("sudo service ".$service." ".$command." 2>&1");
-    $retval = shell_exec('$echo $?');
+    $shell = 'sudo service '.$service.' '.$command;
+    echo $shell;
+    system($shell);
+    $retval = shell_exec("echo $?");
+
+
+    echo "Valeur de retour : ".$retval;
+
     if($retval == 0){
       switch ($command) {
         case 'start':

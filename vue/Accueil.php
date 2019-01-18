@@ -9,6 +9,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<h1>Liste des services</h1> <a href="index.php?controleur=Deconnexion&action=disconnect">Déconnexion</a>
+<br/><br/>
+
+<?php if (isset($_POST['msg_error_form'])) {
+    echo $_POST['msg_error_form'];
+}  ?>
+<br/>
+
+<form action="../controller/start-stop-service.php" method="post">
+<select name="state">
+    <option value="start">start</option>
+    <option value="stop">stop</option>
+</select>
+
+<select name="servicename">
+    <?php foreach ($this->list_service as $key => $value) { ?>
+
+        <option value="<?php echo "$key"; ?>"> <?php echo "$key"; ?></option>
+    <?php } ?>
+</select>
+    <input type="submit" value="Valider" />
+
+</form>
+
+<br/><br/>
+
+
+<table>
+
 <div class="container">
     <a href="index.php?controleur=Deconnexion&action=disconnect">Déconnexion | </a>
     <a href="index.php?controleur=FTP&action=validation">Configuration Serveur FTP | </a>
@@ -17,6 +47,7 @@
 
 <table class="table table-striped">
     <thead>
+
   <tr>
     <th class="col-sm-6">Service</th> <th class="col-sm-6">Etat</th>
   </tr>
@@ -29,6 +60,8 @@
     </tbody>
   <?php } ?>
 </table>
+
 </div>
+
 </body>
 </html>
