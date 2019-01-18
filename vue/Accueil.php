@@ -10,14 +10,25 @@
 </head>
 <body>
 
-<h1>Liste des services</h1> <a href="index.php?controleur=Deconnexion&action=disconnect">Déconnexion</a>
-<br/><br/>
+
+
 
 <?php if (isset($_POST['msg_error_form'])) {
     echo $_POST['msg_error_form'];
 }  ?>
 <br/>
 
+
+<br/><br/>
+
+
+<table>
+
+<div class="container">
+    <a href="index.php?controleur=Deconnexion&action=disconnect">Déconnexion | </a>
+    <a href="index.php?controleur=FTP&action=validation">Configuration Serveur FTP | </a>
+    <a href="index.php?controleur=CPU&action=show">Processeur</a>
+<h1>Liste des services</h1>
 <form action="../controller/start-stop-service.php" method="post">
 <select name="state">
     <option value="start">start</option>
@@ -33,17 +44,6 @@
     <input type="submit" value="Valider" />
 
 </form>
-
-<br/><br/>
-
-
-<table>
-
-<div class="container">
-    <a href="index.php?controleur=Deconnexion&action=disconnect">Déconnexion | </a>
-    <a href="index.php?controleur=FTP&action=validation">Configuration Serveur FTP | </a>
-    <a href="index.php?controleur=CPU&action=show">Processeur</a>
-<h1>Liste des services</h1>
 
 <table class="table table-striped">
     <thead>

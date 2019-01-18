@@ -1,5 +1,5 @@
 <?php
-require_once('modele/data/config.php');
+require_once('../modele/data/config.php');
 error_reporting(E_ALL);
 #######
 # Fonction qui lance la commande 'lscpu' : Informations du système
