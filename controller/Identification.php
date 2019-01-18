@@ -13,8 +13,6 @@ require_once ("modele/data/config.php");
 
 class Identification
 {
-
-    public $HASH = 'sha512';
     public function afficheForm(){
         # Création de la vue
         $vue = new Vue();
@@ -32,10 +30,16 @@ class Identification
         $vue = new Vue();
         # Vérification des données passées dans le formulaire
         # Si il manque une variable
-        if(!isset($_POST["identifiant"]) || !isset($_POST["motDePasse"])){
+        if(!isset($_POST["identifiant"]) && !isset($_POST["motDePasse"])){
+            $vue->show("vue/Identification_form.php");
+
+
+        }
+        else if(!isset($_POST["identifiant"]) || !isset($_POST["motDePasse"])){
             $vue->error_identification = "Mauvais mot de passe/identifiant";
             $vue->show("vue/Identification_form.php");
         }
+
         else{
             # Création d'un databaseDAO
             $database = new DatabaseDAO();
@@ -43,7 +47,7 @@ class Identification
             $identifiant = htmlspecialchars($_POST["identifiant"]);
             $mdp_saisi = htmlspecialchars($_POST["motDePasse"]);
             # hachage du mot de passe /
-            $mdp_hash_saisi = hash($this->HASH, $mdp_saisi);
+            $mdp_hash_saisi = hash($HASH, $mdp_saisi);
             # Il faut à présent vérifier que le mot de passe est bon avec le bon utilisateur
             $utilisateur = $database->getAdmin($identifiant, $mdp_hash_saisi);
 
@@ -56,7 +60,7 @@ class Identification
                 $ticket = session_id().microtime().rand(0,9999999999);
                 $ticket = hash($HASH, $ticket);
                 $expiry = time() + $LIFETIME_COOKIE;
-                $cookieData = (object) array( "ticket" => $ticket, "expiry" => $expiry, "random_datas" => hash($HASH, $expiry));
+                $cookieData = (object) array( "ticket" => $ticket, "expiry" => $expiry, "random_datas" => hash($HASH, $expiry + 20));
                 setcookie( "ticket", json_encode($cookieData), $expiry);
                 # Sauvegarde du token dans la variable de session
                 $_SESSION['ticket'] = $ticket;

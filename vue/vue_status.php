@@ -10,6 +10,7 @@
   </head>
   <body>
   <div class="container">
+      <a href="index.php?controleur=Deconnexion&action=disconnect">Déconnexion</a>
     <h1>Status du serveur</h1>
     <h2>Configuration</h2>
     <table class="table table-striped">

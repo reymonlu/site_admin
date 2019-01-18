@@ -9,5 +9,6 @@ Groupe : Evan ADAM
 -> Services
 -> Démarrer arrêter des services
 -> Infos sur les services
+-> Infos sur le CPU
 -> Lancer des scripts
 

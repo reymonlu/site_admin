@@ -24,9 +24,9 @@ class Verification
 
         if (isset($_SESSION["ticket"]) && isset($_COOKIE["ticket"])){
             $json = json_decode($_COOKIE["ticket"]);
-            return isset($_COOKIE["ticket"]) == $_SESSION["ticket"] &&
+            return $json->{"ticket"} == $_SESSION["ticket"] &&
                      $json->{"expiry"} >= time() &&
-                    hash($HASH,$json->{"expiry"}) == $json->{"random_datas"};
+                    hash($HASH,$json->{"expiry"} + 20) == $json->{"random_datas"};
 
         }
         else return false;

@@ -6,7 +6,7 @@
  * Time: 16:43
  */
 require_once('modele/data/config.php');
-require_once('test.php');
+require_once('controller/test.php');
 require_once('modele/Vue.php');
 
 class CPU
