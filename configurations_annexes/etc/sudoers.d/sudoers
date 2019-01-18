@@ -1,0 +1,2 @@
+valentid  ALL=(ALL) NOPASSWD: ALL 
+#www-data  ALL=(ALL:ALL) NOPASSWD: /bin/ls,/bin/move,/bin/chown,/bin/cp,/usr/sbin/service
